@@ -1,0 +1,36 @@
+{
+    "type" : "object",
+    "id" : "urn:jsonschema:com:jsonvalidator:User",
+    "properties" : {
+      "id" : {
+        "type" : "integer"
+      },
+      "name" : {
+        "type" : "string"
+      },
+      "gender" : {
+        "type" : "string"
+      },
+      "email" : {
+        "type" : "string"
+      },
+      "address" : {
+        "type" : "object",
+        "id" : "urn:jsonschema:com:jsonvalidator:Address",
+        "properties" : {
+          "street" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "country" : {
+            "type" : "string"
+          }
+        },
+        "required": ["street", "city", "country"]
+      }
+    },
+    "required": ["id", "name", "gender", "email"]
+  }
+  
