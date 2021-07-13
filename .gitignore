@@ -13,3 +13,10 @@ target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.l
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/test-classes/schema.json
 target/test-classes/com/jsonvalidator/JsonHandlerTest.class
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/surefire-reports/com.jsonvalidator.JsonHandlerTest.txt
+target/surefire-reports/TEST-com.jsonvalidator.JsonHandlerTest.xml
+target/test-classes/com/jsonvalidator/JsonHandlerTest$1.class
+target/test-classes/com/jsonvalidator/JsonHandlerTest$2.class
+target/test-classes/com/jsonvalidator/JsonHandlerTest$3.class
