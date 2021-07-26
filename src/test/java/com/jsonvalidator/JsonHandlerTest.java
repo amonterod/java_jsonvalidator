@@ -45,7 +45,7 @@ public class JsonHandlerTest {
         // }
     }
 
-    private boolean isJsonValid(String jsonString) {
+    private boolean isJsonWellFormed(String jsonString) {
         boolean output = true;
         try {
             new JSONObject(jsonString);
@@ -77,7 +77,7 @@ public class JsonHandlerTest {
         String validJson = JsonPath.parse(json).delete("$..['name']").jsonString();
         System.out.println(validJson);
         
-        assertTrue("Json is not valid", isJsonValid(validJson));
+        assertTrue("Json is not valid", isJsonWellFormed(validJson));
         try {
             // WHEN
             Schema schema = getSchema("/schema.json");
@@ -98,7 +98,7 @@ public class JsonHandlerTest {
         String validJson = JsonPath.parse(json).delete("$..['address']").jsonString();
         System.out.println(validJson);
         
-        assertTrue("Json is not valid", isJsonValid(validJson));
+        assertTrue("Json is not valid", isJsonWellFormed(validJson));
         try {
             //WHEN
             Schema schema = getSchema("/schema.json");
@@ -125,7 +125,7 @@ public class JsonHandlerTest {
         String validJson = new JSONObject(json).put("id","algo").toString();
         System.out.println(validJson);
         
-        assertTrue("Json is not valid", isJsonValid(validJson));
+        assertTrue("Json is not valid", isJsonWellFormed(validJson));
         try {
             //WHEN
             Schema schema = getSchema("/schema.json");
