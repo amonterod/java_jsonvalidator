@@ -32,7 +32,7 @@ class User {
 
     private long id;
     private String name;
-    private String gender;
+    private String gender; //only support: Male or Female
     private String email;
     private Address address;
 
@@ -78,7 +78,11 @@ public class JsonHandler {
 
         json.accumulate("id", us.getId());
         json.accumulate("name", us.getName());
-        json.accumulate("gender", us.getGender());
+        if (us.getGender().equalsIgnoreCase("male") || us.getGender().equalsIgnoreCase("female")){
+            json.accumulate("gender", us.getGender());
+        } else {
+            throw new RuntimeException("Gender value not supported! Expected: Male or Female.");
+        }
         json.accumulate("email", us.getEmail());
 
         JSONObject addr = new JSONObject();

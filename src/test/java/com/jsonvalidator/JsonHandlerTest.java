@@ -1,5 +1,6 @@
 package com.jsonvalidator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -28,6 +29,18 @@ public class JsonHandlerTest {
     @Before
     public void setUp() {
         json = "{\"address\": {\"country\": \"Spain\",\"city\": \"Madrid\",\"street\": \"Calle Alcala\"},\"gender\": \"Male\",\"name\": \"John\",\"id\": 1,\"email\": \"john@gmail.com\"}";
+
+        Address addr = new Address();
+        addr.setStreet("Calle Alcala");
+        addr.setCity("Madrid");
+        addr.setCountry("Spain");
+
+        us = new User();
+        us.setId(1);
+        us.setName("John");
+        us.setGender("Male");
+        us.setEmail("john@gmail.com");
+        us.setAddress(addr);
     }
 
 
@@ -136,5 +149,37 @@ public class JsonHandlerTest {
         } 
         
     }
+
+    @Test
+    public void givenUserWrongGender_ThenPluginAccessMethodsWorks() {
+
+        System.out.println("\t-" + new Object(){}.getClass().getEnclosingMethod().getName() + "()");
+
+        //GIVEN
+        String wrongGenderJson = json.replaceAll("Male", "Masculino");
+        
+        //WHEN
+        String value = JsonPath.read(wrongGenderJson, "$.gender");
+        //THEN
+        System.out.println("Gender: " + value);
+        assertEquals("Masculino", value);
+        
+    }
+
+    @Test
+    public void givenUserWrongGender_WhenCreateJSON_ThenExceptionRaised() {
+
+        System.out.println("\t-" + new Object(){}.getClass().getEnclosingMethod().getName() + "()");
+        //THEN
+        exceptionRule.expect(RuntimeException.class);
+        exceptionRule.expectMessage("Gender value not supported! Expected: Male or Female.");
+
+        //GIVEN
+        us.setGender("Masculino");
+        
+        //WHEN
+        new JsonHandler().createJsonUser(us);
+    }
+ 
 
 }
